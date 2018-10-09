@@ -1,5 +1,6 @@
 package modernjavainaction.chap05;
 
+import java.io.File;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -72,7 +73,7 @@ public class BuildingStreams {
         .limit(10)
         .forEach(System.out::println);
 
-    long uniqueWords = Files.lines(Paths.get("lambdasinaction/chap5/data.txt"), Charset.defaultCharset())
+    long uniqueWords = Files.lines((new File(BuildingStreams.class.getResource("data.txt").getPath())).toPath(), Charset.defaultCharset())
         .flatMap(line -> Arrays.stream(line.split(" ")))
         .distinct()
         .count();
